@@ -39,6 +39,7 @@ export default function MovieDetailsPage() {
             {movieDetails && (
                 <>
                     <Link to={location.state}><h4>Go Back</h4></Link>
+                    <hr />
                     <div className={css.details}>
                         {movieDetails.poster_path && (
                             <img className={css.pic} src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
