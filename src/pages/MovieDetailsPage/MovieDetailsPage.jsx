@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, useRef } from "react";
 import axios from "axios";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { NavLink, useLocation } from "react-router-dom";
@@ -9,6 +9,8 @@ export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState(null);
     const location = useLocation();
+    const backLinkRef = useRef(location.state)
+    // console.log(backLinkRef.current)
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -38,7 +40,7 @@ export default function MovieDetailsPage() {
         <div>
             {movieDetails && (
                 <>
-                    <Link to={location.state}><h4>Go Back</h4></Link>
+                    <Link to={backLinkRef.current}><h4>Go Back</h4></Link>
                     <hr />
                     <div className={css.details}>
                         {movieDetails.poster_path && (
