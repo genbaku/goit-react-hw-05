@@ -13,6 +13,7 @@ export default function Navigation() {
                 <NavLink to="/" className={makeLinkClass}>Home</NavLink>
                 <NavLink to="/movies" className={makeLinkClass}>Movies</NavLink>
             </nav>
+            <hr />
         </>
     );
 }

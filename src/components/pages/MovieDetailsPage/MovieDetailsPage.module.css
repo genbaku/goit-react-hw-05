@@ -1,15 +1,15 @@
+.pic{
+    width: 300px;
+}
+.details{
+    display: flex;  
+    gap: 24px;
+}
 .link{
     text-decoration: none;
     color: black;
     font-size: x-large;
 }
-
-.nav{
-    display: flex;  
-    gap: 20px;
-    margin: 20px 16px;
-}
-
 .active{
     color: orangered;
 }

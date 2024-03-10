@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
@@ -24,7 +25,7 @@ export default function HomePage() {
             <ul>
                 {movies.map(movie => (
                     <li key={movie.id}>
-                        <Link key={movie.id} to={`/movies/${movie.id}`}>
+                        <Link key={movie.id} to={`/movies/${movie.id}`} state={location}>
                             {movie.title}
                         </Link>
                     </li>
