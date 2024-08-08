@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import css from "./MovieReviews.module.css"; 
 
 export default function MovieReviews() {
     const { movieId } = useParams();
@@ -27,18 +28,18 @@ export default function MovieReviews() {
     }, [movieId]);
 
     return (
-        <div>
+        <div className={css.container}>
             {reviews.length > 0 ? (
-                <ul>
+                <ul className={css.reviewList}>
                     {reviews.map(review => (
-                        <li key={review.id}>
-                            <p>Author: {review.author}</p>
-                            <p>{review.content}</p>
+                        <li className={css.reviewItem} key={review.id}>
+                            <p className={css.reviewAuthor}>Author: {review.author}</p>
+                            <p className={css.reviewContent}>{review.content}</p>
                         </li>
                     ))}
                 </ul>
             ) : (
-                <h2>NO REVIEWS YET</h2>
+                <h2 className={css.noReviews}>NO REVIEWS YET</h2>
             )}
         </div>
     );

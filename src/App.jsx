@@ -3,8 +3,9 @@ import { lazy } from 'react';
 import { Suspense } from 'react';
 import Navigation from './components/Navigation/Navigation';
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"))
+const HomePage = lazy(() => import("./pages/HomePage/TrendingPage"))
 const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"))
+const RandomMoviePage = lazy(() => import("./pages/RandomMoviePage/RandomMoviePage"))
 const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage/MovieDetailsPage"))
 const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"))
 const MovieReviews = lazy(() => import("./components/MovieReviews/MovieReviews"))
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/random" element={<RandomMoviePage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="/movies/:movieId/cast" element={<MovieCast />} />
             <Route path="/movies/:movieId/reviews" element={<MovieReviews />} />

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import css from "./MovieCast.module.css"; 
+import noPoster from "../../components/NothingFoundPoster/NothingFound.png"; 
 
 export default function MovieCast() {
     const { movieId } = useParams();
@@ -27,15 +29,17 @@ export default function MovieCast() {
     }, [movieId]);
 
     return (
-        <div>
-            <ul>
+        <div className={css.container}>
+            <ul className={css.castList}>
                 {cast.map(actor => (
-                    <li key={actor.id}>
-                        <p>Name: {actor.name}</p>
-                        <p>Character: {actor.character}</p>
-                        {actor.profile_path && (
-                            <img src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`} alt={actor.name} />
-                        )}
+                    <li className={css.castItem} key={actor.id}>
+                        <img
+                            className={css.castProfilePic}
+                            src={actor.profile_path ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}` : noPoster}
+                            alt={actor.name}
+                        />
+                        <p className={css.castName}>{actor.name}</p>
+                        <p className={css.castCharacter}>Character: {actor.character}</p>
                     </li>
                 ))}
             </ul>

@@ -9,8 +9,7 @@ export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState(null);
     const location = useLocation();
-    const backLinkRef = useRef(location.state)
-    // console.log(backLinkRef.current)
+    const backLinkRef = useRef(location.state);
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -32,32 +31,38 @@ export default function MovieDetailsPage() {
         fetchMovieDetails();
     }, [movieId]);
 
-    const makeLinkClass = ({isActive}) => {
-        return clsx(css.link, isActive && css.active)
-    }
+    const makeLinkClass = ({ isActive }) => {
+        return clsx(css.link, isActive && css.active);
+    };
 
     return (
-        <div>
+        <div className={css.container}>
             {movieDetails && (
                 <>
-                    <Link to={backLinkRef.current}><h4>Go Back</h4></Link>
+                    <Link to={backLinkRef.current} className={css.backLink}>
+                        <h3>Go Back</h3>
+                    </Link>
                     <hr />
                     <div className={css.details}>
                         {movieDetails.poster_path && (
-                            <img className={css.pic} src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
+                            <img
+                                className={css.pic}
+                                src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+                                alt={movieDetails.title}
+                            />
                         )}
-                        <div>
+                        <div className={css.details2}>
                             <h1>{movieDetails.title}</h1>
-                            <h3>User Score:</h3>
+                            <h2>User Score:</h2>
                             <p>{movieDetails.vote_average}</p>
-                            <h3>Overview:</h3>
+                            <h2>Overview:</h2>
                             <p>{movieDetails.overview}</p>
-                            <h3>Genres:</h3>
+                            <h2>Genres:</h2>
                             <p>{movieDetails.genres.map(genre => genre.name).join(", ")}</p>
                         </div>
                     </div>
                     <hr />
-                    <ul>
+                    <ul className={css.extra}>
                         <li>
                             <NavLink className={makeLinkClass} to="reviews">Reviews</NavLink>
                         </li>
@@ -70,7 +75,6 @@ export default function MovieDetailsPage() {
                     <Suspense fallback={<h2>LOADING MORE DETAILS...</h2>}>
                         <Outlet />
                     </Suspense>
-
                 </>
             )}
         </div>
